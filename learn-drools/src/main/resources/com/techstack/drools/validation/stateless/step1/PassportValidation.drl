@@ -3,6 +3,12 @@ package com.techstack.drools.validation.stateless.step1
 import com.techstack.drools.domain.Passport;
 import java.time.LocalDate;
 
+/*
+Here Passport( !isExpired(), unusedVisaPages > 0 ) can also be written
+Passport( !isExpired() && unusedVisaPages > 0 )
+
+Each , is denoted as && operator
+*/
 rule "Valid passport"
   dialect "mvel"
   when
@@ -11,6 +17,15 @@ rule "Valid passport"
 	System.out.println("This passport is CORRECT");
 end
 
+/*
+This is actually another very good practice for the rule to have an OR clause or
+actually a rule doing more than one thing a travel through which should be as small as possible.
+
+So the right way would be decided this is splitting it into two rules and
+this is what I have done in step two.
+
+Refer step2
+*/
 rule "Expired or full passport"
   dialect "mvel"
   when
