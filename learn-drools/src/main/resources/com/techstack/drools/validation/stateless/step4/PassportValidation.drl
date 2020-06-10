@@ -1,0 +1,44 @@
+package com.techstack.drools.validation.stateless.step4
+ 
+import com.techstack.drools.domain.Passport;
+import com.techstack.drools.domain.Validation;
+import java.time.LocalDate
+
+/*
+Till the last Step, we evaluated the Rules and just printed the
+evaluation message to the console. Which is straight forward.
+
+However, once your rule is executed then you want to set some status code
+in your object. Later it would help you to check flow.
+
+Example:
+Here, in the then block, using $passport variable assessing the method
+to set the Validation Status PASSED or FAILED or UNKNOWN
+*/
+
+rule "Valid passport"
+  dialect "mvel"
+  when
+	$passport: Passport( !isExpired(), $unusedPages: unusedVisaPages > 0 )
+  then
+	System.out.println( $passport + " is CORRECT. It has " + $unusedPages + " pages free." );
+	$passport.setValidation( Validation.PASSED );
+end
+
+rule "Expired passport"
+  dialect "mvel"
+  when
+	$passport: Passport( isExpired() )
+  then
+	System.out.println( $passport + " is INVALID because it is expired" );
+	$passport.setValidation( Validation.FAILED );
+end
+
+rule "Full passport"
+  dialect "mvel"
+  when
+	$passport: Passport( unusedVisaPages == 0 )
+  then
+	System.out.println( $passport + " is INVALID because it has no space for visa" );
+	$passport.setValidation( Validation.FAILED );
+end
