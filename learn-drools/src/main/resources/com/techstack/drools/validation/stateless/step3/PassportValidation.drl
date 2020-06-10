@@ -1,0 +1,40 @@
+package com.techstack.drools.validation.stateless.step3
+ 
+import com.techstack.drools.domain.Passport;
+import java.time.LocalDate;
+
+/*
+In the previous Step2, we have got the message stating that
+Whether the given Passport is CORRECT or INVALID.
+
+However, we don't know who is Passport is CORRECT or INVALID.package
+
+Here in this Step3, in when block we have used to store the Object state of the Passport
+in "$passport" variable, then later we can use in the then block.
+*/
+
+rule "Valid passport"
+  dialect "mvel"
+  when
+	//$passport: Passport( !isExpired(), $unusedPages: unusedVisaPages > 0 )
+	Passport( !isExpired(), $unusedPages: unusedVisaPages > 0, $name: name )
+  then
+	//System.out.println( $passport + " is CORRECT. It has " + $unusedPages + " pages free." );
+	System.out.println( $name + " is CORRECT. It has " + $unusedPages + " pages free." );
+end
+
+rule "Expired passport"
+  dialect "mvel"
+  when
+	$passport: Passport( isExpired() )
+  then
+	System.out.println( $passport + " is INVALID because it is expired" );
+end
+
+rule "Full passport"
+  dialect "mvel"
+  when
+	$passport: Passport( unusedVisaPages == 0 )
+  then
+	System.out.println( $passport + " is INVALID because it has no space for visa" );
+end
