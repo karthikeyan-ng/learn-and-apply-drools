@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+
+    <kbase packages="com.techstack.drools.validation.stateless.step1">
+        <ksession name="StatelessPassportValidationStep1" type="stateless"/>
+    </kbase>
+</kmodule>
