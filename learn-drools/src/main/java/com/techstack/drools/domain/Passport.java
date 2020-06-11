@@ -16,6 +16,7 @@ public class Passport {
     private int unusedVisaPages;
     private int age;
 
+    @Builder.Default
     private Validation validation = Validation.UNKNOWN;
 
     private String cause = "";
