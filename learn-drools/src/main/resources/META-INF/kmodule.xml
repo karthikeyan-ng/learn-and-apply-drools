@@ -23,5 +23,8 @@
     <kbase packages="com.techstack.drools.validation.stateful.step1">
         <ksession name="StatefulPassportValidationStep1"/>
     </kbase>
+    <kbase packages="com.techstack.drools.validation.stateful.step2">
+        <ksession name="StatefulPassportValidationStep2"/>
+    </kbase>
 
 </kmodule>
