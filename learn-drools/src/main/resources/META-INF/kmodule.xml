@@ -44,5 +44,8 @@
     <kbase packages="com.techstack.drools.validation.agendagroup.step1">
         <ksession name="VisaIssueStep1"/>
     </kbase>
+    <kbase packages="com.techstack.drools.validation.agendagroup.step2">
+        <ksession name="VisaIssueStep2"/>
+    </kbase>
 
 </kmodule>
