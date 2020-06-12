@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
 
+    <!-- stateless -->
     <kbase packages="com.techstack.drools.validation.stateless.step1">
         <ksession name="StatelessPassportValidationStep1" type="stateless"/>
     </kbase>
@@ -20,11 +21,23 @@
         <ksession name="StatelessPassportValidationStep6" type="stateless"/>
     </kbase>
 
+    <!-- stateful -->
     <kbase packages="com.techstack.drools.validation.stateful.step1">
         <ksession name="StatefulPassportValidationStep1"/>
     </kbase>
     <kbase packages="com.techstack.drools.validation.stateful.step2">
         <ksession name="StatefulPassportValidationStep2"/>
+    </kbase>
+
+    <!-- crossproduct: VisaApplication + Passport -->
+    <kbase packages="com.techstack.drools.validation.crossproducts.step1">
+        <ksession name="VisaApplicationStep1"/>
+    </kbase>
+    <kbase packages="com.techstack.drools.validation.crossproducts.step2">
+        <ksession name="VisaApplicationStep2"/>
+    </kbase>
+    <kbase packages="com.techstack.drools.validation.crossproducts.step3">
+        <ksession name="VisaApplicationStep3"/>
     </kbase>
 
 </kmodule>

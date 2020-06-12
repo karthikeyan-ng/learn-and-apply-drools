@@ -51,4 +51,37 @@ public class ApplicationRepository {
         return List.of(sarahMurphy, simonMurphy, emilyBrown, jamesBrown);
     }
 
+    public static List<VisaApplication> getVisaApplications() {
+
+        VisaApplication application1 = VisaApplication.builder()
+                .applicationId(1)
+                .passportNumber(SARAH_PASSPORT_NUMBER)
+                .visitStartDate(LocalDate.of(2039, Month.DECEMBER, 27))
+                .visitEndDate(LocalDate.of(2040, Month.JANUARY, 4))
+                .build();
+
+        VisaApplication application2 = VisaApplication.builder()
+                .applicationId(2)
+                .passportNumber(SIMON_PASSPORT_NUMBER)
+                .visitStartDate(LocalDate.of(2039, Month.DECEMBER, 27))
+                .visitEndDate(LocalDate.of(2039, Month.JANUARY, 4))
+                .build();
+
+        VisaApplication application3 = VisaApplication.builder()
+                .applicationId(3)
+                .passportNumber(EMILY_PASSPORT_NUMBER)
+                .visitStartDate(LocalDate.of(2044, Month.JANUARY, 1))
+                .visitEndDate(LocalDate.of(2044, Month.MARCH, 31))
+                .build();
+
+        VisaApplication application4 = VisaApplication.builder()
+                .applicationId(4)
+                .passportNumber(JAMES_PASSPORT_NUMBER)
+                .visitStartDate(LocalDate.of(2045, Month.JANUARY, 1))
+                .visitEndDate(LocalDate.of(2045, Month.MARCH, 10))
+                .build();
+
+        return List.of(application1, application2, application3, application4);
+    }
+
 }

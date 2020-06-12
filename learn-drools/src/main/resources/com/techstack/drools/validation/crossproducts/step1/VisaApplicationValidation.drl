@@ -1,0 +1,30 @@
+package com.techstack.drools.validation.crossproducts.step1
+
+import com.techstack.drools.domain.Passport;
+import com.techstack.drools.domain.Validation;
+import com.techstack.drools.domain.VisaApplication;
+
+import java.time.LocalDate;
+
+rule "Invalidate visa application with invalid passport"
+  dialect "mvel"
+  when
+    $passport: Passport( validation == Validation.FAILED )
+    $visaApplication: VisaApplication( passportNumber == $passport.passportNumber )
+  then
+    System.out.println( "Set " + $visaApplication + " invalid as " + $passport + " hasn't passed validation");
+    modify($visaApplication) {
+      setValidation( Validation.FAILED )
+    }
+end
+
+rule "Set application without validation info as passed"
+  dialect "mvel"
+  when
+    $visaApplication: VisaApplication( validation == Validation.UNKNOWN )
+  then
+    System.out.println( $visaApplication + " is without validation info, consider OK for now" );
+    modify($visaApplication) {
+      setValidation( Validation.PASSED )
+    }
+end
