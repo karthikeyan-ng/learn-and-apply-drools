@@ -26,4 +26,9 @@ public class Passport {
     public boolean isExpired() {
         return expiresOn.isBefore(LocalDate.now());
     }
+
+    @Override
+    public String toString() {
+        return String.format("Passport[no:%s, name:%s]", passportNumber, name);
+    }
 }

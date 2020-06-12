@@ -40,4 +40,9 @@
         <ksession name="VisaApplicationStep3"/>
     </kbase>
 
+    <!-- agendagroup: Issue Visa if all the rules are passed -->
+    <kbase packages="com.techstack.drools.validation.agendagroup.step1">
+        <ksession name="VisaIssueStep1"/>
+    </kbase>
+
 </kmodule>
