@@ -59,4 +59,18 @@
     <kbase packages="com.techstack.drools.validation.agendagroup.step6">
         <ksession name="VisaIssueStep6"/>
     </kbase>
+
+    <!-- logical -->
+    <kbase packages="com.techstack.drools.validation.logical.step1">
+        <ksession name="VisaInsertLogicalStep1"/>
+    </kbase>
+    <kbase packages="com.techstack.drools.validation.logical.step2">
+        <ksession name="VisaInsertLogicalStep2"/>
+    </kbase>
+    <kbase packages="com.techstack.drools.validation.logical.step3">
+        <ksession name="VisaInsertLogicalStep3"/>
+    </kbase>
+    <kbase packages="com.techstack.drools.validation.logical.step4">
+        <ksession name="VisaInsertLogicalStep4"/>
+    </kbase>
 </kmodule>
