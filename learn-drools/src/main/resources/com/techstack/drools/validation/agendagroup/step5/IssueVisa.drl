@@ -1,0 +1,18 @@
+package com.techstack.drools.validation.agendagroup.step5
+
+import com.techstack.drools.domain.Validation;
+import com.techstack.drools.domain.VisaApplication;
+import com.techstack.drools.domain.Visa
+import java.time.LocalDate
+
+
+rule "Issue visa for valid applications"
+	dialect "mvel"
+	agenda-group "issue-visa"
+	when
+	  $visaApplication: VisaApplication( validation == Validation.PASSED )
+	then
+	  Visa visa = new Visa( $visaApplication.getPassportNumber() );
+	  System.out.println("Issue " + visa);
+	  insert( visa )
+end
