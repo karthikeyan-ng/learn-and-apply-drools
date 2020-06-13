@@ -23,6 +23,10 @@ public class VisaIssue {
         System.out.println("Running step " + step);
         KieSession ksession = KieServices.Factory.get().getKieClasspathContainer().newKieSession("VisaIssueStep" + step);
 
+        /**
+         * In order to see how rules works internally we have added
+         * DebugAgendaEventListener to see the output in the console
+         */
         ksession.addEventListener(new AgendaGroupEventListener(System.out));
 
         List<Passport> passports = ApplicationRepository.getPassports();
@@ -40,6 +44,14 @@ public class VisaIssue {
         visaApplications.forEach(ksession::insert);
 
         if (step == 3) {
+            /**
+             * Here Agenda is a DataStructure which works Last-In and First-Out (Stack).
+             *
+             * The Agenda which we added in the agendaGroup first will be executed
+             * Last. The execution order is "invalid-passport"..."issue-visa"
+             * Finally rules which are not part of "Agenda Group" will be executed at the end
+             * after all the Agenda Group rules are executed.
+             */
             Agenda agenda = ksession.getAgenda();
             agenda.getAgendaGroup("issue-visa").setFocus();
             agenda.getAgendaGroup("valid-application").setFocus();
