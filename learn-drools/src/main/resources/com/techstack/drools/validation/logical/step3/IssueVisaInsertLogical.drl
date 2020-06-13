@@ -1,0 +1,15 @@
+package com.techstack.drools.validation.logical.step3
+
+import com.techstack.drools.domain.ValidVisaApplication;
+import com.techstack.drools.domain.VisaApplication;
+import com.techstack.drools.domain.Visa
+
+rule "Issue visa for valid applications"
+	dialect "mvel"
+	when
+	  ValidVisaApplication( $visaApplication: this.visaApplication )
+	then
+	  Visa visa = new Visa( $visaApplication.getPassportNumber() );
+	  System.out.println("Issue " + visa);
+	  insertLogical( visa )
+end
