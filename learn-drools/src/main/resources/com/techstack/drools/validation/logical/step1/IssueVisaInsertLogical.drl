@@ -1,0 +1,20 @@
+package com.techstack.drools.validation.logical.step1
+
+import com.techstack.drools.domain.Validation;
+import com.techstack.drools.domain.VisaApplication;
+import com.techstack.drools.domain.Visa
+
+/*
+Here insertLogical will take dicisions based on the when block condition.
+If When block not statisfied, those objects will be deleted at the end of rule execution.
+Only satisfied objects will be pass through the insertLogic block.
+*/
+rule "Issue visa for valid applications"
+	dialect "mvel"
+	when
+	  $visaApplication: VisaApplication( validation == Validation.PASSED )
+	then
+	  Visa visa = new Visa( $visaApplication.getPassportNumber() );
+	  System.out.println("Issue " + visa);
+	  insertLogical( visa )
+end
