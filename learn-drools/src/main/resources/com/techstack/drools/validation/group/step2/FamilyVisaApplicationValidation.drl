@@ -1,0 +1,26 @@
+package com.techstack.drools.validation.group.step2
+
+import com.techstack.drools.domain.InvalidPassport;
+import com.techstack.drools.domain.Passport;
+import com.techstack.drools.domain.InvalidFamilyVisaApplication;
+import com.techstack.drools.domain.FamilyVisaApplication;
+
+import java.time.LocalDate;
+
+/*
+In Step one the same rule:
+It was executing many times. Here in this rule, rewrite the same
+and it would only fire once no matter how many really passports just
+family visa application contains.
+
+we have controlled through "exists" keyword
+*/
+rule "Invalidate visa applications with invalid passport"
+	dialect "mvel"
+	when
+		$familyVisaApplication: FamilyVisaApplication( )
+		exists InvalidPassport( $familyVisaApplication.passportNumbers.contains(this.passport.passportNumber) )
+	then
+		System.out.println( "Set " + $familyVisaApplication + " invalid as it contains invalid passport");
+		insert( new InvalidFamilyVisaApplication($familyVisaApplication) )
+end

@@ -84,4 +84,22 @@ public class ApplicationRepository {
         return List.of(application1, application2, application3, application4);
     }
 
+    public static List<FamilyVisaApplication> getFamilyVisaApplications() {
+
+        FamilyVisaApplication familyVisaApplication10 = FamilyVisaApplication.builder()
+                .applicationId(10)
+                .passportNumbers(List.of(SARAH_PASSPORT_NUMBER, SIMON_PASSPORT_NUMBER))
+                .visitStartDate(LocalDate.of(2039, Month.DECEMBER, 27))
+                .visitEndDate(LocalDate.of(2040, Month.JANUARY, 4))
+                .build();
+
+        FamilyVisaApplication familyVisaApplication11 = FamilyVisaApplication.builder()
+                .applicationId(11)
+                .passportNumbers(List.of(EMILY_PASSPORT_NUMBER, JAMES_PASSPORT_NUMBER))
+                .visitStartDate(LocalDate.of(2044, Month.JANUARY, 1))
+                .visitEndDate(LocalDate.of(2044, Month.MAY, 31))
+                .build();
+
+        return List.of(familyVisaApplication10, familyVisaApplication11);
+    }
 }

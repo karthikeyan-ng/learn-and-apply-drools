@@ -1,0 +1,15 @@
+package com.techstack.drools.validation.group.step5
+
+import com.techstack.drools.domain.InvalidPassport;
+import com.techstack.drools.domain.Passport;
+import com.techstack.drools.domain.Validation;
+import java.time.LocalDate;
+
+
+rule "Everyone is at least 20"
+	dialect "mvel"
+	when
+		forall ( Passport( age >= 20 ))
+	then
+		System.out.println( "Everyone whose passport is in session is at least 20 years old" );
+end
